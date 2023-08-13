@@ -28,30 +28,32 @@
 | ------------------ | ---------- | ------------------------------ |
 | name               | string     | null: false                    |
 | description        | text       | null: false                    |
-| categories         | string     | null: false                    |
-| condition          | string     | null: false                    |
-| postage            | string     | null: false                    |
-| sender             | string     | null: false                    |
-| shipment           | string     | null: false                    |
 | price              | integer    | null: false                    |
-| commission         | integer    | null: false                    |
-| profit             | integer    | null: false                    |
-| seller_id          | references | null: false, foreign_key: true |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| postage_id         | integer    | null: false                    |
+| sender_id          | integer    | null: false                    |
+| shipment_id        | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_one :sale
+- belongs_to :category
+- belongs_to :condition
+- belongs_to :postage
+- belongs_to :sender
+- belongs_to :shipment
 
 
 
 ## Salesテーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| purchaser_id        | references | null: false, foreign_key: true |
-| item_id             | references | null: false, foreign_key: true |
-| shipping_address_id | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -66,16 +68,18 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | post_code          | string     | null: false                    |
-| prefectures        | string     | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | municipalities     | string     | null: false                    |
 | street_address     | string     | null: false                    |
-| building           | string     | null: false                    |
-| telephone_number   | integer    | null: false                    |
+| building           | string     |                                |
+| telephone_number   | string     | null: false                    |
+| sale               | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :sale
+- belongs_to :prefecture
 
 
 
