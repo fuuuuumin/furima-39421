@@ -32,7 +32,7 @@
 | category_id        | integer    | null: false                    |
 | condition_id       | integer    | null: false                    |
 | postage_id         | integer    | null: false                    |
-| sender_id          | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | shipment_id        | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
@@ -43,7 +43,7 @@
 - belongs_to :category
 - belongs_to :condition
 - belongs_to :postage
-- belongs_to :sender
+- belongs_to :prefecture
 - belongs_to :shipment
 
 
