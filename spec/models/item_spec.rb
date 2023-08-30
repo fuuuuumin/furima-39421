@@ -60,12 +60,12 @@ RSpec.describe Item, type: :model do
       it '価格が300円より小さい場合、出品できない' do
         @item.price = '10'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price ¥300~¥9,999,999で指定してください"
+        expect(@item.errors.full_messages).to include 'Price ¥300~¥9,999,999で指定してください'
       end
       it '価格が9,999,999円より大きい場合、出品できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price ¥300~¥9,999,999で指定してください"
+        expect(@item.errors.full_messages).to include 'Price ¥300~¥9,999,999で指定してください'
       end
     end
   end
