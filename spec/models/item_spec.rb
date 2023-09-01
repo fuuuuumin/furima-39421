@@ -82,6 +82,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
+      it '価格が全角の場合、出品できない' do
+        @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price ¥300~¥9,999,999で指定してください"
+      end
       it '価格が300円より小さい場合、出品できない' do
         @item.price = '10'
         @item.valid?
