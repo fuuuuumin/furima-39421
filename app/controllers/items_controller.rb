@@ -2,6 +2,9 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
+  @items = Item.order("created_at DESC")
+  @postages = Postage.all
+  @item_postage_pairs = @items.zip(@postages)
   end
 
   def new
