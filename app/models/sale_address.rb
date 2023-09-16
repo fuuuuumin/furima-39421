@@ -16,4 +16,5 @@ class SaleAddress
     sale = Sale.create(user_id: user_id, item_id: item_id)
     Address.create(post_code: post_code, prefecture_id: prefecture_id, municipalities: municipalities, street_address: street_address, building: building, telephone_number: telephone_number, sale_id: sale.id)
   end
+  
 end
