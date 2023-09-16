@@ -1,8 +1,11 @@
 class SalesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
 
   def index
     @item = Item.find(params[:item_id])
     @sale_address = SaleAddress.new
+    return unless current_user == @item.user
+    redirect_to root_path
   end
 
   def create
