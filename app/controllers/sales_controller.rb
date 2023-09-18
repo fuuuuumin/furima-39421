@@ -4,7 +4,7 @@ class SalesController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @sale_address = SaleAddress.new
-    return unless current_user == @item.user
+    return unless (current_user == @item.user || Sale.exists?(item_id: @item.id))
     redirect_to root_path
   end
 

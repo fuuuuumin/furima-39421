@@ -20,10 +20,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @sale = Sale.all
   end
 
   def edit
-    return unless current_user != @item.user
+    return unless (current_user != @item.user || Sale.exists?(item_id: @item.id))
 
     redirect_to root_path
   end
