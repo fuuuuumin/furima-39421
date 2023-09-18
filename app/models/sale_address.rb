@@ -1,6 +1,6 @@
 class SaleAddress
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :municipalities, :street_address, :building, :telephone_number, :user_id, :item_id
+  attr_accessor :post_code, :prefecture_id, :municipalities, :street_address, :building, :telephone_number, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :user_id
@@ -10,6 +10,7 @@ class SaleAddress
     validates :municipalities
     validates :street_address
     validates :telephone_number, format: {with: /\A\d{10,11}\z/, message: "10桁以上11桁以内の半角数値で入力してください" }
+    validates :token, presence: true
   end
 
   def save

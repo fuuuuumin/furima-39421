@@ -69,6 +69,11 @@ RSpec.describe SaleAddress, type: :model do
         @sale_address.valid?
         expect(@sale_address.errors.full_messages).to include("Telephone number 10桁以上11桁以内の半角数値で入力してください")
       end
+      it 'トークンが空の場合、購入できない' do
+        @sale_address.token = nil
+        @sale_address.valid?
+        expect(@sale_address.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
