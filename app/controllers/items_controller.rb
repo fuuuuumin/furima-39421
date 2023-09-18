@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return unless (current_user != @item.user || Sale.exists?(item_id: @item.id))
+    return unless current_user != @item.user || Sale.exists?(item_id: @item.id)
 
     redirect_to root_path
   end
@@ -39,9 +39,7 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if current_user == item.user
-      item.destroy
-    end
+    item.destroy if current_user == item.user
     redirect_to root_path
   end
 

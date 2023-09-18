@@ -22,17 +22,18 @@ RSpec.describe SaleAddress, type: :model do
       it '郵便番号が空の場合、購入できない' do
         @sale_address.post_code = ''
         @sale_address.valid?
-        expect(@sale_address.errors.full_messages).to include("Post code can't be blank", "Post code is invalid. Include hyphen(-)")
+        expect(@sale_address.errors.full_messages).to include("Post code can't be blank",
+                                                              'Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号が全角の場合、購入できない' do
         @sale_address.post_code = '１２３ー４５６７'
         @sale_address.valid?
-        expect(@sale_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@sale_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号がハイフンを含まない場合、購入できない' do
         @sale_address.post_code = '1234567'
         @sale_address.valid?
-        expect(@sale_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@sale_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '都道府県が空の場合、購入できない' do
         @sale_address.prefecture_id = ''
@@ -57,17 +58,17 @@ RSpec.describe SaleAddress, type: :model do
       it '電話番号が9桁以下の場合、購入できない' do
         @sale_address.telephone_number = '12345'
         @sale_address.valid?
-        expect(@sale_address.errors.full_messages).to include("Telephone number 10桁以上11桁以内の半角数値で入力してください")
+        expect(@sale_address.errors.full_messages).to include('Telephone number 10桁以上11桁以内の半角数値で入力してください')
       end
       it '電話番号が12桁以上の場合、購入できない' do
         @sale_address.telephone_number = '123451234512345'
         @sale_address.valid?
-        expect(@sale_address.errors.full_messages).to include("Telephone number 10桁以上11桁以内の半角数値で入力してください")
+        expect(@sale_address.errors.full_messages).to include('Telephone number 10桁以上11桁以内の半角数値で入力してください')
       end
       it '電話番号が全角の場合、購入できない' do
         @sale_address.telephone_number = '１２３４５１２３４５'
         @sale_address.valid?
-        expect(@sale_address.errors.full_messages).to include("Telephone number 10桁以上11桁以内の半角数値で入力してください")
+        expect(@sale_address.errors.full_messages).to include('Telephone number 10桁以上11桁以内の半角数値で入力してください')
       end
       it 'トークンが空の場合、購入できない' do
         @sale_address.token = nil
