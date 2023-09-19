@@ -1,8 +1,8 @@
 class SalesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @sale_address = SaleAddress.new
     return unless current_user == @item.user || Sale.exists?(item_id: @item.id)
 
@@ -10,7 +10,6 @@ class SalesController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @sale_address = SaleAddress.new(sale_params)
     if @sale_address.valid?
       pay_item
@@ -37,4 +36,9 @@ class SalesController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
 end

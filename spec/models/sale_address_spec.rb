@@ -36,7 +36,7 @@ RSpec.describe SaleAddress, type: :model do
         expect(@sale_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '都道府県が空の場合、購入できない' do
-        @sale_address.prefecture_id = ''
+        @sale_address.prefecture_id = 1
         @sale_address.valid?
         expect(@sale_address.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -74,6 +74,16 @@ RSpec.describe SaleAddress, type: :model do
         @sale_address.token = nil
         @sale_address.valid?
         expect(@sale_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが紐付いていない場合、購入できない' do
+        @sale_address.user_id = nil
+        @sale_address.valid?
+        expect(@sale_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていない場合、購入できない' do
+        @sale_address.item_id = nil
+        @sale_address.valid?
+        expect(@sale_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
