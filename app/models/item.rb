@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipment
   has_one_attached :image
+  has_one :sale
 
   validates :name, presence: true
   validates :description, presence: true
